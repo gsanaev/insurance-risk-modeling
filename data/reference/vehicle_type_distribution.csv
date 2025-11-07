@@ -1,0 +1,6 @@
+vehicle_type,probability,mean_engine_power_kw,mean_vehicle_age
+hatchback,0.28,80,6.5
+sedan,0.32,110,7.0
+SUV,0.22,140,4.2
+van,0.1,95,5.5
+sports,0.08,190,3.1

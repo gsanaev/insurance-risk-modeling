@@ -1,0 +1,16 @@
+region,region_name,pkw_share,urban_density
+NW,North Rhine-Westphalia,0.215,urban
+BY,Bavaria,0.17,suburban
+BW,Baden-Württemberg,0.143,urban
+NI,Lower Saxony,0.103,suburban
+HE,Hesse,0.081,suburban
+RP,Rhineland-Palatinate,0.051,rural
+SN,Saxony,0.054,rural
+SH,Schleswig-Holstein,0.036,suburban
+BE,Berlin,0.025,urban
+BB,Brandenburg,0.028,rural
+ST,Saxony-Anhalt,0.027,rural
+TH,Thuringia,0.027,rural
+HH,Hamburg,0.016,urban
+MV,Mecklenburg-Vorpommern,0.015,rural
+SL,Saarland,0.012,suburban
