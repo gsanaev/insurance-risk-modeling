@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insurance Risk Modeling — Claim Frequency, Severity & Portfolio Simulation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      max-width: 950px;
+      margin: 2rem auto;
+      padding: 1rem 1.5rem;
+      line-height: 1.6;
+      background-color: #f9fafc;
+      color: #2c3e50;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f2d3d;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #5a6b7a;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+      text-align: justify;
+      margin-bottom: 1.8rem;
+    }
+
+    .figure-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .figure-row img {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .caption {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    li {
+      margin: 0.6rem 0;
+      font-size: 1.05rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0078D4;
+      font-weight: 600;
+    }
+
+    a:hover {
+      color: #005A9E;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      color: #555;
+    }
+
+    footer a {
+      color: #0078D4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    pre {
+      background-color: #eef4fb;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      color: #005A9E;
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+
+    .acknowledgements {
+      margin-top: 3rem;
+      background: #eef4fb;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .acknowledgements h3 {
+      text-align: center;
+      color: #0078D4;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .acknowledgements ul {
+      text-align: left;
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    .acknowledgements li {
+      margin: 0.4rem 0;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🧮 Insurance Risk Modeling — Claim Frequency, Severity & Portfolio Simulation</h1>
+  <h2>Actuarial Analytics with Python · GLM, Machine Learning & Streamlit Dashboard</h2>
+
+  <p>
+    This project demonstrates a complete <strong>insurance data science and actuarial modeling workflow</strong> —
+    from <strong>synthetic portfolio generation</strong> and <strong>data calibration</strong> to
+    <strong>predictive modeling</strong> and <strong>business evaluation</strong>.
+    <br><br>
+    It integrates <strong>Generalized Linear Models (Poisson, Gamma)</strong> with
+    <strong>machine learning approaches</strong> such as Random Forests and Gradient Boosting to model
+    <em>claim frequency</em>, <em>claim severity</em>, and <em>pure premiums</em> across heterogeneous policy segments.
+    <br><br>
+    The project emphasizes <strong>actuarial interpretability</strong>, <strong>reproducibility</strong>, and
+    <strong>business applicability</strong> — equipping analysts and pricing professionals to derive insights on
+    profitability, segmentation, and technical vs. commercial pricing balance.
+  </p>
+
+  <div class="figure-row">
+    <img src="premium_distributions.png" alt="Distribution of Pure vs Loaded Premiums" />
+    <img src="rf_feature_importances.png" alt="Feature Importance — Claim Frequency Model" />
+  </div>
+
+  <div class="caption">
+    Left: Distribution of pure (technical) and loaded (commercial) premiums.<br>
+    Right: Feature importance visualization for the claim frequency model.
+  </div>
+
+  <h2>📘 Explore the Analytical Workflow</h2>
+  <ul>
+    <li>🧩 <a href="../docs/notebooks_html/01a_reference_data_exploration.html">Reference Data Exploration</a></li>
+    <li>⚙️ <a href="../src/ins/simulate_data.py">Synthetic Data Simulation</a></li>
+    <li>📊 <a href="../docs/notebooks_html/03_model_frequency.html">Claim Frequency Modeling (Poisson & Random Forest)</a></li>
+    <li>💰 <a href="../docs/notebooks_html/04_model_severity.html">Claim Severity Modeling (Gamma & Gradient Boosting)</a></li>
+    <li>📈 <a href="../docs/notebooks_html/05_combined_purepremium.html">Combined Pure Premium Analysis</a></li>
+    <li>📉 <a href="../docs/notebooks_html/06_business_evaluation.html">Business Evaluation & Portfolio KPIs</a></li>
+  </ul>
+
+  <h2>🖥️ Interactive Dashboard</h2>
+  <p>
+    The project includes an <strong>interactive dashboard</strong> built with
+    <strong>Streamlit</strong> for real-time portfolio exploration and pricing analytics.
+    It enables users to analyze claim frequency, severity, and premium dynamics
+    by region, vehicle type, and policyholder characteristics.
+  </p>
+
+  <pre><code>uv run streamlit run src/ins/app_dashboard.py</code></pre>
+
+  <p>
+    A hosted version will be available soon for demonstration and portfolio simulation.
+  </p>
+
+  <div class="acknowledgements">
+    <h3>🙏 Acknowledgements</h3>
+    <ul>
+      <li><a href="https://stackfuel.com/" target="_blank">StackFuel</a> — for supporting applied machine learning and actuarial analytics research</li>
+      <li><a href="https://pandas.pydata.org/" target="_blank">pandas</a>, 
+          <a href="https://scikit-learn.org/" target="_blank">scikit-learn</a>, and 
+          <a href="https://www.statsmodels.org/" target="_blank">statsmodels</a> — core libraries for data processing, GLM modeling, and ML workflows</li>
+      <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a> and 
+          <a href="https://seaborn.pydata.org/" target="_blank">Seaborn</a> — for advanced actuarial and portfolio data visualization</li>
+      <li>Open data sources — 
+          <a href="https://www.kba.de/DE/Statistik/statistik_node.html" target="_blank">KBA</a>, 
+          <a href="https://www.mobilitaet-in-deutschland.de/" target="_blank">MiD</a>, and 
+          <a href="https://www.gdv.de/" target="_blank">GDV</a> — for empirical calibration and realism in synthetic insurance data</li>
+      <li><strong><a href="https://openai.com/" target="_blank">OpenAI GPT-5 Assistant</a></strong> — for collaboration on workflow design, automation, and documentation</li>
+    </ul>
+  </div>
+
+
+  <footer>
+    <p>
+      <em>Created by Golib Sanaev, 2025 — MIT License</em><br>
+      <a href="https://github.com/gsanaev/insurance-risk-modeling" target="_blank">
+        View on GitHub
+      </a>
+    </p>
+  </footer>
+
+</body>
+
+</html>
