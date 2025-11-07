@@ -1,10 +1,59 @@
-# Python-generated files
+# ==============================================
+# 📦 INSURANCE RISK MODELING — .gitignore
+# ==============================================
+
+# --- Python-generated files ---
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.egg-info/
+*.egg
 build/
 dist/
 wheels/
-*.egg-info
+*.log
 
-# Virtual environments
-.venv
+# --- Virtual environments ---
+.venv/
+env/
+venv/
+
+# --- macOS & system junk ---
+.DS_Store
+._*
+Thumbs.db
+
+# --- Jupyter Notebooks checkpoints ---
+.ipynb_checkpoints/
+
+# --- Editor & IDE metadata ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Compiled / temporary data ---
+*.tmp
+*.bak
+*.old
+*.lock
+
+# --- Outputs ---
+outputs/figures/
+outputs/reports/
+outputs/tmp/
+
+# --- Raw & intermediate data ---
+data/raw/*
+!data/raw/.gitkeep
+
+# Keep only small, version-controlled reserve dataset
+data/data_reserve/*
+!data/data_reserve/synthetic_insurance_portfolio_2025-11-07.csv
+!data/data_reserve/.gitkeep
+
+# --- Cache or temporary files from docs or notebooks ---
+docs/notebooks_html/
+*.nbconvert.ipynb
+
+# --- Local files not to commit ---
+pre-push review checklist.docx
