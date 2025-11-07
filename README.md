@@ -1,48 +1,56 @@
-# 🚗 Insurance Risk Modeling – Frequency, Severity, and Pure Premium Analysis
+# 🚗 Insurance Risk Modeling – Frequency, Severity & Pure Premium Analysis  
+> **Version 1.2 – November 2025**
 
 ## 📋 Overview
-This project develops an analytical and machine learning framework for **risk scoring and premium modeling** in the **auto insurance domain**.  
-It simulates a realistic insurance portfolio to estimate expected claim costs (pure premiums) by combining **frequency** and **severity** models.
+This project develops a **data-driven insurance risk modeling framework** for **auto insurance**, integrating **actuarial and machine learning methods** to estimate expected claim costs (*pure premiums*).  
 
-The project demonstrates a full actuarial–data science workflow that integrates:
-- **Statistical modeling (GLMs)** for interpretability, and  
-- **Machine learning (XGBoost, LightGBM)** for predictive performance.
+The workflow simulates a **synthetic German insurance portfolio** and models:  
+- **Claim frequency** (Poisson / tree-based ML)  
+- **Claim severity** (Gamma / tree-based ML)  
+- **Expected pure premium** as their product  
 
-All results are reproducible using synthetic data generated via a controlled simulation process that mimics real auto insurance portfolios.
+It provides an **end-to-end reproducible pipeline**, grounded in empirical reference data from **KBA**, **MiD**, and **GDV**.
 
 ---
 
 ## 🎯 Objectives
-- Simulate a realistic **auto insurance dataset** with driver, vehicle, and regional risk factors.
-- Model **claim frequency** using Poisson regression and tree-based ML.
-- Model **claim severity** using Gamma regression and tree-based ML.
-- Combine both models to estimate **expected pure premium** per policy.
-- Evaluate model performance using both **statistical** and **business metrics**.
-- Provide **explainable results** aligned with real-world insurance practice.
+- Simulate a realistic **auto insurance dataset** (driver, vehicle, region, behavior)  
+- Model **claim frequency** via Poisson GLM and ML approaches  
+- Model **claim severity** via Gamma GLM and ML approaches  
+- Combine both components to compute **expected pure premium**  
+- Evaluate model accuracy and **business KPIs** (loss ratio, Gini, calibration)  
+- Ensure results are **transparent, interpretable, and reproducible**  
 
 ---
 
 ## 🏗️ Methodological Framework
 
 ### 1. Data Simulation
-Synthetic dataset generation based on:
-- Policy-level variables (driver age, vehicle type, region, etc.)
-- Realistic risk relationships
-- Poisson process for claim frequency
-- Gamma distribution for claim severity
+Synthetic portfolio generated using:
+- **Region-first stratified sampling** (KBA vehicle stock)
+- Policy-level features: age, mileage, region, garage, usage, etc.  
+- **Poisson process** for claim counts  
+- **Gamma process** for claim severities  
+
+### 1.1. Data Reserve
+> The file `data/data_reserve/synthetic_insurance_portfolio_2025-11-07.csv` is **version-controlled** to guarantee project reproducibility even if data generation cannot be re-run.  
+> Use this reserve dataset as a fallback when `simulate_data.py` cannot be executed —  
+> all analytical notebooks will remain fully functional and consistent with the reference setup.
 
 ### 2. Modeling Components
+
 | Component | Method | Description |
 |------------|---------|-------------|
-| Frequency | Poisson GLM / XGBoost | Predicts number of claims per policy |
-| Severity | Gamma GLM / XGBoost | Predicts average claim cost given a claim |
-| Pure Premium | Frequency × Severity | Expected total claim cost |
+| **Frequency** | Poisson GLM / Random Forest | Predicts claim count per policy |
+| **Severity** | Gamma GLM / Gradient Boosting | Predicts average claim cost per claim |
+| **Pure Premium** | Frequency × Severity | Expected total claim cost per policy |
 
 ### 3. Evaluation Metrics
+
 | Type | Metric | Purpose |
 |------|---------|----------|
 | Statistical | RMSE, MAE, Deviance | Model accuracy |
-| Business | Gini, Loss Ratio, Calibration | Pricing performance |
+| Business | Gini, Loss Ratio, Calibration | Portfolio risk differentiation |
 | Explainability | SHAP, Partial Dependence | Model interpretation |
 
 ---
@@ -51,53 +59,48 @@ Synthetic dataset generation based on:
 
 ```
 insurance-risk-modeling/
-├── src/
-│ └── ins/
-│ ├── simulate_data.py
-│ ├── preprocess.py
-│ ├── model_frequency.py
-│ ├── model_severity.py
-│ ├── model_purepremium.py
-│ └── utils.py
-│
-├── notebooks/
-│ ├── 01_data_simulation.ipynb
-│ ├── 02_exploration.ipynb
-│ ├── 03_model_frequency.ipynb
-│ ├── 04_model_severity.ipynb
-│ ├── 05_combined_purepremium.ipynb
-│ └── 06_business_evaluation.ipynb
-│
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   ├── data_reserve/       # synthetic_insurance_portfolio_2025-11-07.csv          
+│   ├── raw/                # synthetic_insurance_portfolio.csv
+│   └── reference/          # KBA, MiD, GDV reference datasets
 │
-├── outputs/
-│ ├── figures/
-│ ├── models/
-│ └── reports/
+├── notebooks/              # analysis and modeling steps
+│   ├── 01a_reference_data_exploration.ipynb
+│   ├── 01b_data_simulation_validation.ipynb
+│   ├── 02_exploration.ipynb
+│   ├── 03_model_frequency.ipynb
+│   ├── 04_model_severity.ipynb
+│   ├── 05_combined_purepremium.ipynb
+│   └── 06_business_evaluation.ipynb
 │
-├── docs/
-│ ├── index.html
-│ ├── notebooks_html/
-│ └── assets/
+├── src/ins/                # reproducible app and simulation scripts
+│   ├── simulate_data.py
+│   └── app_dashboard.py
+│
+├── outputs/                # figures, model summaries, reports
+│   ├── figures/
+│   └── reports/
+│
+├── docs/                   # documentation and review artifacts
+│   ├── notebooks_html/
+│   └── PROJECT_REVIEW.md
 │
 ├── requirements.txt
 ├── LICENSE
 ├── README.md
-└── .gitignore
+└── PROJECT_SETUP.md
 ```
-
 
 ---
 
 ## ⚙️ Tools & Libraries
+
 - **Core:** Python, pandas, numpy, scikit-learn  
-- **Statistical Models:** statsmodels (GLMs)  
-- **Machine Learning:** XGBoost, LightGBM  
+- **Statistical Modeling:** statsmodels (GLM)  
+- **Machine Learning:** RandomForest, GradientBoosting, XGBoost  
 - **Visualization:** matplotlib, seaborn, plotly  
-- **Interpretability:** SHAP  
-- **Dashboard (optional):** Streamlit  
+- **Interpretability:** SHAP, PDP  
+- **Deployment (optional):** Streamlit dashboard  
 
 ---
 
@@ -105,28 +108,84 @@ insurance-risk-modeling/
 
 | Step | Notebook | Description |
 |------|-----------|-------------|
-| 1 | 01_data_simulation.ipynb | Generate and validate synthetic data |
-| 2 | 02_exploration.ipynb | Exploratory data analysis |
-| 3 | 03_model_frequency.ipynb | Build frequency model (Poisson, XGBoost) |
-| 4 | 04_model_severity.ipynb | Build severity model (Gamma, XGBoost) |
-| 5 | 05_combined_purepremium.ipynb | Combine models for expected premium |
-| 6 | 06_business_evaluation.ipynb | Analyze results and business metrics |
+| 1 | 01a_reference_data_exploration.ipynb | Explore MiD, KBA, GDV reference data |
+| 2 | 01b_data_simulation_validation.ipynb | Generate & validate synthetic portfolio |
+| 3 | 03_model_frequency.ipynb | Model claim frequency (Poisson GLM / RF) |
+| 4 | 04_model_severity.ipynb | Model claim severity (Gamma GLM / GBM) |
+| 5 | 05_combined_purepremium.ipynb | Compute expected pure premium |
+| 6 | 06_business_evaluation.ipynb | Evaluate KPIs, Gini, Lorenz, and pricing |
+
+---
+
+## 📊 Validation & Calibration Targets
+
+| Metric | Target Range | Typical Result |
+|---------|---------------|----------------|
+| Claim frequency | 0.07–0.09 | ✅ 0.08 |
+| Mean severity | €2,200–€3,200 | ✅ €2,700 |
+| Pure premium | €170–€260 | ✅ €214 |
+| Gini (loss concentration) | 0.25–0.40 | ✅ 0.31 |
+
+These indicators confirm that the synthetic dataset and models behave consistently with realistic insurance portfolios.
 
 ---
 
 ## 📈 Expected Outcomes
-- A **reproducible simulation dataset** for auto insurance analytics.
-- Comparative analysis of GLM and ML methods.
-- Interpretability and business insights.
-- Final risk segmentation and pricing evaluation.
+
+- **Synthetic, auditable dataset** representative of the German auto market  
+- Comparison of **GLM** (interpretability) vs **ML** (predictive power)  
+- Visualization of key risk factors and portfolio performance  
+- **Business-ready KPIs** (Loss Ratio, Gini, Lorenz, pricing balance)  
+
+---
+
+## 🧭 Interactive Dashboard — Streamlit
+
+A lightweight **Streamlit dashboard** complements the analytical notebooks, providing an interactive interface for:
+- KPIs (claims, frequency, severity, premium)
+- Segment analysis (region, vehicle type, density)
+- Dynamic plots (Plotly)
+- Filtered data export (CSV)
+
+### ▶ Run locally
+
+```bash
+uv run streamlit run src/ins/app_dashboard.py
+```
+
+📁 **Path:** `src/ins/app_dashboard.py`  
+🧰 **Stack:** Streamlit, Plotly, pandas, numpy  
 
 ---
 
 ## 📜 License
-This project is licensed under the **MIT License** – you’re free to use, modify, and distribute it with attribution.
+Licensed under the **MIT License** — free for use, modification, and distribution with attribution.
 
 ---
 
 ## 👤 Author
-Developed by **[Your Name]**, Data Scientist  
-Focused on applied data science and risk analytics in the insurance domain.
+Developed by **Golib Sanaev**  
+*Data Scientist | Applied Risk Analytics & Insurance Modeling*  
+
+📧 **Email:** gsanaev@gmail.com  
+🔗 **LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev)  
+💻 **GitHub:** [@gsanaev](https://github.com/gsanaev)
+
+---
+
+## 📚 Citation
+> Sanaev, G. (2025). *Insurance Risk Modeling – Frequency, Severity & Pure Premium Simulation (German Auto Market, 2023–2025).*  
+> GitHub: [github.com/gsanaev/insurance-risk-modeling](https://github.com/gsanaev/insurance-risk-modeling)
+
+---
+
+## 🙏 Acknowledgements
+
+- [StackFuel](https://stackfuel.com/) — applied data science education  
+- [GDV](https://www.gdv.de/), [KBA](https://www.kba.de/), [MiD](https://www.mobilitaet-in-deutschland.de/) — empirical reference data  
+- [Allianz SE](https://www.allianz.com/) — for actuarial practice alignment  
+- [scikit-learn](https://scikit-learn.org/), [statsmodels](https://www.statsmodels.org/), [SHAP](https://github.com/shap/shap) — core modeling tools  
+- [pandas](https://pandas.pydata.org/), [NumPy](https://numpy.org/), [matplotlib](https://matplotlib.org/) — data & visualization foundations  
+- **OpenAI GPT-5 Assistant** — documentation, automation & code review support  
+
+⭐ *If you find this project useful, please give it a star!*  
