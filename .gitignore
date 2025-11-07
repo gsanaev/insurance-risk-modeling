@@ -52,8 +52,10 @@ data/data_reserve/*
 !data/data_reserve/.gitkeep
 
 # --- Cache or temporary files from docs or notebooks ---
-docs/notebooks_html/
+# Ignore only temporary conversion artifacts
 *.nbconvert.ipynb
+# Keep published HTML notebooks
+!docs/notebooks_html/
 
 # --- Local files not to commit ---
 pre-push review checklist.docx
