@@ -167,7 +167,7 @@ Licensed under the **MIT License** — free for use, modification, and distribut
 Developed by **Golib Sanaev**  
 *Data Scientist | Applied Risk Analytics & Insurance Modeling*  
 
-📧 **Email:** gsanaev@gmail.com  
+📧 **Email:** gsanaev80@gmail.com  
 🔗 **LinkedIn:** [golib-sanaev](https://linkedin.com/in/golib-sanaev)  
 💻 **GitHub:** [@gsanaev](https://github.com/gsanaev)
 
